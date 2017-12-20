@@ -10,7 +10,7 @@ This is a living document of Best Practices and Code Standards for Front-End Dev
 
 > Well-formed markup is made up of part standards and part agreed upon preferences by a team of developers. Along with consistency, both are important in creating maintainable, readable code for everybody.
 
-**An [.editorconfig](#editor-config) file is included with this documentation to aid in enforcing some of these standards.** A full breakdown of the current .editorconfig is provided later in this document.
+**An [.editorconfig](#editor-config) file is included with this documentation to aid in enforcing some of these standards.** A full breakdown of the current `.editorconfig` is provided later in this document.
 
 The Table of Contents below will help jump you to the pertinent section of this Code Standards document:
 
@@ -43,7 +43,6 @@ The Table of Contents below will help jump you to the pertinent section of this 
   * [Class Naming Conventions](#class-naming-conventions)
   * [Block Element Modifier (BEM)](#block-element-modifier-bem)
   * [CSS and JavaScript](#css-and-javascript)
-  * [File Organization](#file-organization)
 * [Images](#images)
 * [Editor Config](#editor-config)
 * [Sources](#sources)
@@ -62,12 +61,12 @@ There are several guiding principles with Code Standards. These represent the co
 <a name="readability-and-minification"></a>
 ### Readability and Minification
 
-When developing, readability is preferred over compression. There is no need for a developer to purposefully manually or automatically compress HTML or CSS/SCSS, nor obfuscate JavaScript (more details provided in JavaScript Code Standards).
+When developing, readability is preferred over compression. There is no need for a developer to purposefully (manually or automatically) compress HTML or CSS/SCSS, nor obfuscate JavaScript (more details provided in JavaScript Code Standards).
 
 _[Gulp](https://gulpjs.com/) modules are used to combine and minify CSS and JavaScript assets as needed. **Verbosity is preferred in original source code.**_
 
 <a name="whitespace"></a>
-### Readability and Minification
+### Whitespace
 
 * Always be consistent in your use of whitespace using it to improve code readability.
 * Use soft tabs with four spaces.
@@ -118,7 +117,7 @@ HTML5 provides us with lots of semantic elements aimed to describe precisely the
 * Nested elements should be indented once (four spaces).
 * Classes are preferred over IDs when it comes to CSS references to avoid specificity issues. More details on [Class Naming Conventions](#class-naming-conventions) are below.
 
-```
+```html
 <!-- bad -->
 <body>
   <img src='../path/file' alt='Alternative Text' />
@@ -167,7 +166,7 @@ _Tools such as [The W3C Markup Validation Service](https://validator.w3.org/) or
 
 Enforce standards mode and more consistent rendering in every browser possible with this simple doctype at the beginning of every HTML page.
 
-```
+```html
 <!DOCTYPE html>
 <html>
     <head>
@@ -185,7 +184,7 @@ Enforce standards mode and more consistent rendering in every browser possible w
 
 Quickly and easily ensure proper rendering of your content by declaring an explicit character encoding. When doing so, you may avoid using character entities in your HTML, provided their encoding matches that of the document (generally `<meta charset="UTF-8">`).
 
-```
+```html
 <!DOCTYPE html>
 <html lang="en-us">
     <head>
@@ -200,9 +199,9 @@ _**Starting HTML5 markup is included with this documentation (based on [HTML5 Bo
 <a name="css-and-javascript-includes"></a>
 ### CSS and JavaScript Includes
 
-Per HTML5 spec, typically there is no need to specify a type when including CSS and JavaScript files as `text/css` and `text/javascript` are their respective defaults.
+Per the HTML5 spec, typically there is no need to specify a type when including CSS and JavaScript files as `text/css` and `text/javascript` are their respective defaults.
 
-```
+```html
 <!-- external CSS -->
 <link rel="stylesheet" href="my-styles.css">
 
@@ -227,7 +226,7 @@ HTML attributes should come in this particular order for easier reading of code.
 * `role`, `aria-*`
 * `data-*`
 
-```
+```html
 <a href="#" class="..." id="..." data-toggle="modal">
     Example Link
 </a>
@@ -244,7 +243,7 @@ As far as Identifiable information is concerned, Classes make for great reusable
 
 XHTML required you to declare a value, but HTML5 has no such requirement. **Many attributes, like `disabled` or `checked`, don’t require a value to be set so don’t set them.**
 
-```
+```html
 <input type="text" disabled>
 
 <input type="checkbox" value="1" checked>
@@ -262,9 +261,9 @@ Writing markup in a JavaScript file makes the content harder to find, harder to 
 <a name="html-comments"></a>
 ### Comments
 
-Insert an ending comment after closing tag of a long HTML section. This helps to identify what named element is being closed. **DO NOT use a starting comment.**
+Insert an ending comment after the closing tag of a long HTML section. This helps to identify what named element is being closed. **DO NOT use a starting comment.**
 
-```
+```html
 <div class="my-class">
     ...
 </div>
@@ -274,19 +273,19 @@ Insert an ending comment after closing tag of a long HTML section. This helps to
 <a name="accessibility"></a>
 ### Accessibility (a11y)
 
-Basic accessibility principles should be adhered to when writing HTML - it shouldn't be an afterthought. You don't have to be a WCAG expert and different clients have different requirements for level of support, but **basic accessibility support can have a huge impact.**
+Basic accessibility principles should be adhered to when writing HTML - it shouldn't be an afterthought. You don't have to be a [WCAG](https://www.w3.org/WAI/intro/wcag) expert and different clients have different requirements for level of support, but **basic accessibility support can have a huge impact.**
 
 * Use `H1` - `H6` to properly order and identify headings.
 * In tables, use the `scope` attribute to associate header cells and data cells in data tables and use the `summary` attribute of the table element to give an overview of data tables.
 * For forms, always provide a submit button, use `label` elements to associate text labels with form controls, and visually indicate required form controls.
 * With image elements, always use `alt` attributes. Use an empty `alt` attribute on image elements that Assistive Technology should ignore.
 
-_Tools such as [PowerMapper’s SortSite](https://www.powermapper.com/products/sortsite/) or [Chrome’s Accessibility Developer Tools](https://chrome.google.com/webstore/detail/accessibility-developer-t/fpkknkljclfencbdbgkenhalefipecmb?hl=en) addon can be used to audit and correct basic accessibility issues._
+_Tools such as [PowerMapper’s SortSite](https://www.powermapper.com/products/sortsite/) or [Chrome’s Accessibility Developer Tools](https://chrome.google.com/webstore/detail/accessibility-developer-t/fpkknkljclfencbdbgkenhalefipecmb?hl=en) extension can be used to audit and correct basic accessibility issues._
 
 <a name="performance"></a>
 ### Performance
 
-Unless there's a valid reason for loading your scripts before your content (e.g. [Modernizr](https://modernizr.com/) or certain trakcing scripts), don't block the rendering of your page by placing them in the `<head>`. Move as many as possible to the bottom of the markup right above the `</body>` or `async`/`defer` load.
+Unless there's a valid reason for loading your scripts before your content (e.g. [Modernizr](https://modernizr.com/) or certain tracking scripts), don't block the rendering of your page by placing them in the `<head>`. Move as many as possible to the bottom of the markup right above the `</body>` or `async`/`defer` the load.
 
 Individual SVG assets should be optimized using a tool such as [SVGOMG](https://jakearchibald.github.io/svgomg/). Image assets should be processed using a tool like [ImageOptim](https://imageoptim.com/mac). Both of these safely remove - without a noticeable change to the asset - redundant and useless information such as editor metadata, comments, hidden elements, default or non-optimal values which can have a significant impact on file size.
 
@@ -321,7 +320,7 @@ Partials are named `_partial-name.scss` - with a "_" prefix - to indicate that t
 
 There is no penalty to splitting into many small files. It’s much easier to jump to small specific files and navigate through them than fewer/larger ones.
 
-```
+```css
 // global
 @import "global/functions";
 @import "global/variables";
@@ -354,18 +353,18 @@ Source Maps are produced as part of our Gulp build to more easily determine wher
 
 The overall structure of a SCSS rule should follow the below order:
 
-* Extends
+* **Extends**
   * Always place `@extend` statements on the first lines of a declaration block.
   * Knowing right off the bat that this class inherits another set of rules from elsewhere is good and overriding styles for that inherited set of rules becomes much easier.
-* Regular Styles
+* **Regular Styles**
   * Adding our regular styles after `@extends` allows us to properly override those properties, if needed.
-* Pseudo Class’ and Elements
+* **Pseudo Class’ and Elements**
   * Pseudo Class’ and Pseudo Elements directly relate to the element itself so we nest them first before other selectors.
   * Differentiate between Pseudo Elements and Pseudo Classes by using a double colon versus a single colon, respectively (`my-class::before { … }` versus `my-class:hover { … }`).
-* Nested Selectors
+* **Nested Selectors**
   * This includes any modifiers and children of the class we’re working within.
 
-```
+```css
 .my-module {
     @extend %module;
     background: #0f0;
@@ -410,7 +409,7 @@ CSS/SCSS formatting decisions documented below are in place to ensure that code 
 * Don't make values and selectors hard to override. Minimize the use of id's and avoid `!important`.
 * For improved readability, wrap all math operations in parentheses with a single space between values, variables, and operators.
 
-```
+```css
 .selector-1,
 .selector-2,
 .selector-3[type="text"] {
@@ -440,7 +439,7 @@ _Adding vendor prefixes for CSS properties is unnecessary since Gulp uses [Autop
 
 Long, comma-separated property values - such as collections of gradients or shadows - can be arranged across multiple lines in an effort to improve readability and produce more useful diffs.
 
-```
+```css
 .selector-1 {
     display: block;
     box-shadow: 0 1px 2px #ccc,
@@ -450,7 +449,7 @@ Long, comma-separated property values - such as collections of gradients or shad
 
 In instances where a rule set includes only one declaration, consider removing line breaks for readability and faster editing. Any rule set with multiple declarations should be split to separate lines.
 
-```
+```css
 .span1 { width: 60px; }
 .span2 { width: 140px; }
 .span3 { width: 220px; }
@@ -493,7 +492,7 @@ Positioning comes first because it can remove an element from the normal flow of
 
 Everything else takes place inside the component or without impacting the previous two sections, and thus they come last.
 
-```
+```css
 .declaration-order {
     /* positioning */
     z-index: 100;
@@ -533,7 +532,7 @@ Everything else takes place inside the component or without impacting the previo
 <a name="pixels-ems-rems-for-typography"></a>
 ### Pixels vs. EMs vs. REMs for Typography
 
-Use REMs with a pixel fallback for font-size, because it offers absolute control over text. Additionally, a unitless line-height is preferred because it does not inherit a percentage value of its parent element, but instead is based on a multiplier of the font-size.
+Use REMs with a pixel fallback for `font-size`, because it offers absolute control over text. Additionally, a unitless `line-height` is preferred because it does not inherit a percentage value of its parent element, but instead is based on a multiplier of the `font-size`.
 
 <a name="scss-comments"></a>
 ### Comments
@@ -546,14 +545,14 @@ Well commented code is extremely important. Take time to describe components, ho
 * Make liberal use of comments to break SCSS code into discrete sections.
 * Use "sentence case" comments and consistent text indentation.
 
-```
+```css
 /*
- * Top level comment
+ * Comment Header
  *
  *****************************************************************************/
 
 /*
- * Detailed comment
+ * Detailed Comment Header
  *
  * This is some text the describes, in detail, how the below SCSS works, any
  limitations, and the way it is constructed.
@@ -564,7 +563,7 @@ Well commented code is extremely important. Take time to describe components, ho
  *****************************************************************************/
 
 /*
- * Child comment
+ * Child Comment
  *
  *********************************************************/
 
@@ -589,7 +588,7 @@ The BEM approach ensures that everyone who participates in the development of a 
 
 The naming convention follows this pattern:
 
-```
+```css
 .block { ... }
 .block__element { ... }
 .block--modifier { ... }
@@ -601,12 +600,14 @@ The naming convention follows this pattern:
 
 An analogy/model for how elements are related:
 
-```
+```css
 .media { ... }
 .media__img { ... }
 .media__img--rev { ... }
 .media__body { ... }
+```
 
+```html
 <div class="media">
     <img src="logo.png" class="media__img  media__img--rev" alt="Foo Corp logo">
     <div class="media__body">
@@ -625,7 +626,7 @@ CSS classes or IDs as references for JavaScript functionality should be avoided 
 
 Use the `.is-*` prefix for state classes that are shared between CSS/SCSS and JavaScript to denote a temporary styling application.
 
-```
+```html
 <div class="accordion-tab is-active" data-accordion="true">
     ...
 </div>
