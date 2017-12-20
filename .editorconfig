@@ -1,0 +1,26 @@
+# .editorconfig helps developers define and maintain consistent coding
+# styles between different editors and IDEs
+
+# for more information about the properties used in this file, please see
+# the .editorconfig documentation: http://editorconfig.org/
+
+# this is the top-most .editorconfig file; do not search parent directories
+root = true
+
+# applied to all files
+[*]
+indent_style = space
+indent_size = 4
+end_of_line = lf
+charset = utf-8
+trim_trailing_whitespace = true
+insert_final_newline = true
+
+[*.md]
+trim_trailing_whitespace = false
+
+# the indent size used in the `package.json` file cannot be changed
+# https://github.com/npm/npm/pull/3180#issuecomment-16336516
+[{.travis.yml,package.json}]
+indent_size = 2
+indent_style = space
