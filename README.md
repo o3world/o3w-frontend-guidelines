@@ -402,8 +402,8 @@ CSS/SCSS formatting decisions documented below are in place to ensure that code 
 * If you need transparency, use `rgba()`. Otherwise, always use the hexadecimal format.
 * Lowercase all hex values (e.g., `#fff`). Lowercase letters are much easier to discern when scanning a document as they tend to have more unique shapes.
 * Use shorthand hex values where available (e.g., `#fff` instead of `#ffffff`).
-* Use double quotes consistently (e.g., `content: "";`).
-* Quote attribute values in selectors (e.g., `input[type="text"]`). They’re only optional in some cases, and it’s a good practice for consistency.
+* Use single quotes consistently (e.g., `content: '';`).
+* Quote attribute values in selectors (e.g., `input[type='text']`). They’re only optional in some cases, and it’s a good practice for consistency.
 * Avoid specifying units for zero values (e.g., `margin: 0;` instead of `margin: 0px;`).
 * Separate each ruleset by a blank line.
 * Don't make values and selectors hard to override. Minimize the use of id's and avoid `!important`.
@@ -412,7 +412,7 @@ CSS/SCSS formatting decisions documented below are in place to ensure that code 
 ```css
 .selector-1,
 .selector-2,
-.selector-3[type="text"] {
+.selector-3[type='text'] {
     display: block;
     box-shadow: 0 1px 2px #ccc;
     background: #fff;
@@ -423,7 +423,7 @@ CSS/SCSS formatting decisions documented below are in place to ensure that code 
     &::before {
         position: absolute;
         padding: 0;
-        content: "";
+        content: '';
     }
 }
 
@@ -703,5 +703,6 @@ These Code Standards are the culmination of research into best practices as well
 
 * [Front-End Guidelines](https://github.com/bendc/frontend-guidelines)
 * [Idiomatic CSS](https://github.com/necolas/idiomatic-css)
-* [SASS Style Guide](https://css-tricks.com/sass-style-guide/)
 * [Code Guide](http://codeguide.co/)
+* [SASS Style Guide](https://css-tricks.com/sass-style-guide/)
+* [SASS Guidelines](https://sass-guidelin.es/)
