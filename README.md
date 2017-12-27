@@ -142,7 +142,7 @@ HTML5 provides us with lots of semantic elements aimed to describe precisely the
     <ul class="my-list">
         <li>
             This is the first part of some sample text before a break.
-            <br />
+            <br>
             More text after the break.
         </li>
         <li>Just another list item in the middle of two others.</li>
