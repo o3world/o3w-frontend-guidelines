@@ -1,8 +1,6 @@
 # Front-End Coding Standards (HTML & CSS)
 
-The following document outlines a reasonable style guide for CSS development.
-These guidelines strongly encourage the use of existing, common, sensible
-patterns. They should be adapted as needed to create your own style guide.
+The following document outlines a reasonable style guide for CSS development. These guidelines strongly encourage the use of existing, common, sensible patterns. They should be adapted as needed to create your own style guide.
 
 ## Introduction
 
@@ -43,6 +41,7 @@ The Table of Contents below will help jump you to the pertinent section of this 
   * [Class Naming Conventions](#class-naming-conventions)
   * [Block Element Modifier (BEM)](#block-element-modifier-bem)
   * [CSS and JavaScript](#css-and-javascript)
+  * [Linting](#scss-linting)
 * [Images](#images)
 * [Editor Config](#editor-config)
 * [Sources](#sources)
@@ -296,6 +295,8 @@ _The default Gulp setup has been configured to combine and minify CSS and JavaSc
 
 Representing the Presentation layer of our Front-End Development, it’s important that our CSS/SCSS is well organized and documented. One of CSS’ best features - cascading - can also be its biggest achilles.
 
+**A [.sass-lint.yml](#sass-lint) file is included with this documentation to aid in enforcing some of these standards.** A full breakdown of the current `.sass-lint.yml` is provided later in this document.
+
 <a name="scss-file-naming-and-organization"></a>
 ### File Naming and Organization
 
@@ -322,26 +323,26 @@ There is no penalty to splitting into many small files. It’s much easier to ju
 
 ```css
 // global
-@import "global/functions";
-@import "global/variables";
+@import 'global/functions';
+@import 'global/variables';
 
 // vendor
-@import "vendor/bootstrap/bootstrap";
+@import 'vendor/bootstrap/bootstrap';
 
 // elements
-@import "partial/grid";
-@import "partial/utility";
+@import 'partial/grid';
+@import 'partial/utility';
 
 // patterns
-@import "partial/tabs";
-@import "partial/modals";
+@import 'partial/tabs';
+@import 'partial/modals';
 
 // sections
-@import "partial/header";
-@import "partial/footer";
+@import 'partial/header';
+@import 'partial/footer';
 
 // pages
-@import "partial/contact-page";
+@import 'partial/contact-page';
 ```
 
 #### Compile with Source Maps
@@ -367,13 +368,16 @@ The overall structure of a SCSS rule should follow the below order:
 ```css
 .my-module {
     @extend %module;
+    @include font-size(16);
+
     background: #0f0;
+    text-transform: uppercase;
 
     &:hover { background: #0c0; }
 
     &::before {
         display: block;
-        content: "";
+        content: '';
     }
 
     > h3 {
@@ -469,7 +473,6 @@ Related property declarations should be grouped together following the order:
   * `left`
 * **Display and Box Model**
   * `display`
-  * `overflow`
   * `float`
   * `margin`
   * `border-radius`
@@ -477,16 +480,18 @@ Related property declarations should be grouped together following the order:
   * `padding`
   * `width`
   * `height`
+  * `overflow`
   * `background-*`
 * **Typography**
   * `text-*`
   * `line-height`
   * `font-*`
+  * `color`
 * **Miscellaneous**
   * `opacity`
-  * `content`
   * `transform`
   * `transition`
+  * `content`
 
 Positioning comes first because it can remove an element from the normal flow of the document and override box model related styles. The box model comes next as it dictates a component's dimensions and placement.
 
@@ -504,7 +509,6 @@ Everything else takes place inside the component or without impacting the previo
 
     /* display and box-model */
     display: block;
-    overflow: hidden;
     float: right;
     margin: 0;
     border-radius: 50%;
@@ -512,20 +516,21 @@ Everything else takes place inside the component or without impacting the previo
     padding: 0;
     width: 100px;
     height: 100px;
+    overflow: hidden;
     background-color: #f5f5f5;
 
     /* typography */
     text-align: center;
     line-height: 1.5;
-    font: normal 13px "Helvetica Neue", sans-serif;
+    font: normal 13px 'Helvetica Neue', sans-serif;
     font-size: 14px;
     color: #333;
 
     /* misc */
     opacity: 1;
-    content: "";
     transform: translateX(10px);
     transition: color #f00;
+    content: '';
 }
 ```
 
@@ -609,9 +614,9 @@ An analogy/model for how elements are related:
 
 ```html
 <div class="media">
-    <img src="logo.png" class="media__img  media__img--rev" alt="Foo Corp logo">
+    <img src="logo.png" class="media__img media__img--rev" alt="Foo Corp logo">
     <div class="media__body">
-        <h3 class="alpha">Welcome to Foo Corp</h3>
+        <h3 class="h2">Welcome to Foo Corp</h3>
         <p class="lede">Foo Corp is the best, seriously!</p>
     </div>
 </div>
@@ -632,6 +637,115 @@ Use the `.is-*` prefix for state classes that are shared between CSS/SCSS and Ja
 </div>
 ```
 
+<a name="scss-linting"></a>
+### Linting
+
+A custom `.sass-lint.yml` file has been setup and included with this documentation to aid in the implementation of these standards. This Linting process runs as a Gulp task - courtesy of the [sass-lint](https://github.com/sasstools/sass-lint) package - when your SCSS is processed. It will provide Warnings and Errors within the console for you to review and correct.
+
+Most items will be flagged as a Warning, but a few items that will generate an Error include:
+
+* Extends before mixins
+* Extends before declarations
+* Mixins before declarations
+* One declaration per line
+* Empty line between blocks
+* Single line per selector
+* No invalid hexs
+* No trailing whitespace
+* No URL domains
+* No URL protocols
+* Declarations before nesting
+* Quote attributes
+* Border zero
+* Hex length
+* Hex notation
+* Leading zero
+* Quotes
+* Zero units
+* Space before colon
+* Space after colon
+* Space before brace
+* Space before bang (!)
+* Space after bang (!)
+* Space between parens
+* Space around operator
+* Trailing semicolon
+* Final newline
+
+**All items (Warnings and Errors) should be addressed to be inline with Front-End Standards defined in this document.**
+
+A full breakdown of all available Rules in the SASS Linter are available with the [Documentation](https://github.com/sasstools/sass-lint/tree/develop/docs/rules).
+
+_NOTE: There are instances where exceptions to these Linting rules are necessary. In those instances, individual file, rule, and declaration exceptions can be added. A breakdown of these exception comments is below:_
+
+**Disable a rule for the entire file**
+
+```css
+// sass-lint:disable border-zero
+p {
+    border: 0; // No lint reported
+}
+```
+
+**Disable more than 1 rule**
+
+```css
+// sass-lint:disable border-zero, quotes
+p {
+    border: none; // No lint reported
+    content: 'hello'; // No lint reported
+}
+```
+
+**Disable a rule for a single line**
+
+```css
+p {
+    border: 0; // sass-lint:disable-line border-zero
+}
+```
+
+**Disable all lints within a block (and all contained blocks)**
+
+```css
+p {
+    // sass-lint:disable-block border-zero
+    border: 0; // No result reported
+}
+
+a {
+    border: 0; // Failing result reported
+}
+```
+
+**Disable and enable again**
+
+```css
+// sass-lint:disable border-zero
+p {
+    border: 0; // No result reported
+}
+// sass-lint:enable border-zero
+
+a {
+    border: 0; // Failing result reported
+}
+```
+
+**Disable/enable all linters**
+
+```css
+// sass-lint:disable-all
+p {
+    border: 0; // No result reported
+}
+// sass-lint:enable-all
+
+a {
+    border: 0; // Failing result reported
+}
+```
+
 <a name="images"></a>
 ## Images
 
@@ -640,7 +754,7 @@ An image that has informational value should be a part of the markup and include
 <a name="editor-config"></a>
 ## Editor Config
 
-EditorConfig helps developers define and maintain consistent coding styles between different editors and IDEs. This will help avoid common code inconsistencies and dirty diffs due to differences in editor formatting..
+An EditorConfig helps developers define and maintain consistent coding styles between different editors and IDEs. This will help avoid common code inconsistencies and dirty diffs due to differences in editor formatting.
 
 A few items pre-set in the `.editorconfig` file:
 
@@ -663,7 +777,7 @@ A few items pre-set in the `.editorconfig` file:
   * `trim_trailing_whitespace = false`
     * Do Not remove any trailing whitespace from lines.
 * The indent size used in the `package.json` file cannot be changed, so we have specific settings for this file type:
-  * `[{.travis.yml,package.json}]`
+  *   `[{.travis.yml,package.json}]`
     * `indent_size = 2`
     * `indent_style = space`
 
