@@ -534,6 +534,8 @@ Everything else takes place inside the component or without impacting the previo
 }
 ```
 
+_NOTE: A comprehensive property order breakdown can be viewed in the custom `.sass-lint.yml` file. Properties that are delared out of the order defined in this file will be flagged with a warning during linting._
+
 <a name="pixels-ems-rems-for-typography"></a>
 ### Pixels vs. EMs vs. REMs for Typography
 
