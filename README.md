@@ -313,7 +313,7 @@ The top-level SCSS should serve as a “Table of Contents” with no styles dire
 * Global
 * Vendor
 * Elements
-* Patterns
+* Components
 * Sections
 * Pages
 
@@ -333,13 +333,13 @@ There is no penalty to splitting into many small files. It’s much easier to ju
 @import 'partial/grid';
 @import 'partial/utility';
 
-// patterns
-@import 'partial/tabs';
+// components
 @import 'partial/modals';
+@import 'partial/tabs';
 
 // sections
-@import 'partial/header';
-@import 'partial/footer';
+@import 'partial/global-footer';
+@import 'partial/global-header';
 
 // pages
 @import 'partial/contact-page';
