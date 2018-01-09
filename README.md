@@ -240,7 +240,17 @@ As far as Identifiable information is concerned, Classes make for great reusable
 <a name="boolean-attributes"></a>
 ### Boolean Attributes
 
-XHTML required you to declare a value, but HTML5 has no such requirement. **Many attributes, like `disabled` or `checked`, don’t require a value to be set so don’t set them.**
+XHTML required you to declare a value for all attributes, but HTML5 has no such requirement for boolean attributes. A list of some of these boolean attributes includes:
+
+* autofocus
+* selected
+* checked
+* disabled
+* readonly
+* multiple
+* required
+* novalidate
+* formnovalidate
 
 ```html
 <input type="text" disabled>
@@ -251,6 +261,8 @@ XHTML required you to declare a value, but HTML5 has no such requirement. **Many
     <option value="1" selected>1</option>
 </select>
 ```
+
+The [W3C Spec for Boolean Attributes](https://www.w3.org/TR/html5/infrastructure.html#sec-boolean-attributes) has additional information on these boolean attributes.
 
 <a name="javascript-generated-markup"></a>
 ### JavaScript-Generated Markup
@@ -277,7 +289,12 @@ Basic accessibility principles should be adhered to when writing HTML - it shoul
 * Use `H1` - `H6` to properly order and identify headings.
 * In tables, use the `scope` attribute to associate header cells and data cells in data tables and use the `summary` attribute of the table element to give an overview of data tables.
 * For forms, always provide a submit button, use `label` elements to associate text labels with form controls, and visually indicate required form controls.
-* With image elements, always use `alt` attributes. Use an empty `alt` attribute on image elements that Assistive Technology should ignore.
+* With image elements, **always** use `alt` attributes. Use an empty `alt` attribute on image elements that Assistive Technology should ignore.
+    * Good `alt` attribute text should describe the content of the image as specifically as possible.
+    * If an image is used for decorative purposes only, an `alt=""` should be used.
+* Text should NEVER be included as part of an image even when using and `alt` attribute to describe it.
+
+**For additional information on writing good `alt` attribute text, check out [What is Alt Text (Alternative Text)?](https://moz.com/learn/seo/alt-text) by Moz.**
 
 _Tools such as [PowerMapper’s SortSite](https://www.powermapper.com/products/sortsite/) or [Chrome’s Accessibility Developer Tools](https://chrome.google.com/webstore/detail/accessibility-developer-t/fpkknkljclfencbdbgkenhalefipecmb?hl=en) extension can be used to audit and correct basic accessibility issues._
 
@@ -354,11 +371,12 @@ Source Maps are produced as part of our Gulp build to more easily determine wher
 
 The overall structure of a SCSS rule should follow the below order:
 
-* **Extends**
-  * Always place `@extend` statements on the first lines of a declaration block.
+* **Extends and Includes**
+  * Always place `@extend` and `@include` statements on the first lines of a declaration block.
   * Knowing right off the bat that this class inherits another set of rules from elsewhere is good and overriding styles for that inherited set of rules becomes much easier.
 * **Regular Styles**
-  * Adding our regular styles after `@extends` allows us to properly override those properties, if needed.
+  * Adding our regular styles after `@extend` and `@include` allows us to properly override those properties, if needed.
+  * To support a mobile-first cascade, the styles that are defined first represent the "base" or smallest screen look. Media Queries are added after our Regular Styles to build on or modify the "base" look.
 * **Pseudo Class’ and Elements**
   * Pseudo Class’ and Pseudo Elements directly relate to the element itself so we nest them first before other selectors.
   * Differentiate between Pseudo Elements and Pseudo Classes by using a double colon versus a single colon, respectively (`my-class::before { … }` versus `my-class:hover { … }`).
@@ -373,6 +391,11 @@ The overall structure of a SCSS rule should follow the below order:
     background: #0f0;
     text-transform: uppercase;
 
+    @media screen and (min-width: 768px) {
+        background: #f00;
+        text-align: center;
+    }
+
     &:hover { background: #0c0; }
 
     &::before {
@@ -381,8 +404,14 @@ The overall structure of a SCSS rule should follow the below order:
     }
 
     > h3 {
-        border-bottom: 1px solid #fff;
         @include transform(rotate(90deg));
+
+        border-bottom: 1px solid #fff;
+
+        @media screen and (min-width: 768px) {
+            border-bottom: 0;
+            text-transform: uppercase;
+        }
     }
 }
 ```
@@ -541,6 +570,8 @@ _NOTE: A comprehensive property order breakdown can be viewed in the custom `.sa
 
 Use REMs with a pixel fallback for `font-size`, because it offers absolute control over text. Additionally, a unitless `line-height` is preferred because it does not inherit a percentage value of its parent element, but instead is based on a multiplier of the `font-size`.
 
+_`font-size` and `line-height` mixins are available and will generate a REM value with a Pixel fallback._
+
 <a name="scss-comments"></a>
 ### Comments
 
@@ -627,7 +658,20 @@ An analogy/model for how elements are related:
 <a name="css-and-javascript"></a>
 ### CSS and JavaScript
 
-CSS classes or IDs as references for JavaScript functionality should be avoided as much as possible to prevent conflicts where renaming or removing a class or ID name would break JavaScript functionality. Instead use `data-*` attributes to apply JavaScript functionality to elements and components.
+CSS classes or IDs as references for JavaScript functionality should be avoided as much as possible to prevent conflicts where renaming or removing a class or ID name would break JavaScript functionality.
+
+Instead use `data-*` attributes to apply JavaScript functionality to elements and components exclusive of styling applied by classes. This `data-*` attribute should be namespaced to the element or component where you are applying functionality.
+
+If, for instance, you are applying `data-*` attributes to a mobile primary navigation with toggle buttons and flyout panels, you might use a naming convention like:
+
+```
+data-nav="container"
+data-nav="toggle"
+data-subnav="container"
+data-subnav="toggle"
+```
+
+_Use your best judgement or ask a fellow developer if your namespacing makes sense. TL;DR Naming is hard._
 
 #### State Classes
 
@@ -751,7 +795,21 @@ a {
 <a name="images"></a>
 ## Images
 
-An image that has informational value should be a part of the markup and include an appropriate `alt` attribute. If an image is purely decorative (such as a textured background) then a `background-image` is appropriate or an inline image with the appropriate ARIA and `role` attributes applied.
+An image that has informational value should be a part of the markup and include an appropriate `alt` attribute - more on proper `alt` attribute implementation can be found in [Accessibility](#accessibility).
+
+If an image is purely decorative (it provides no content value other than visual flair to the page) then a `background-image` is appropriate. An inline image can also be used, but with the appropriate ARIA and `role` attributes applied.
+
+`<img src="../path/to/image/file.jpg" alt="" aria-hidden="true" role="presentation"`
+
+These attrbiutes should also be applied when defining an inline SVG icon.
+
+```
+<svg class="u-icon-search-dims" aria-hidden="true" role="presentation">
+    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#search"></use>
+</svg>
+```
+
+These attributes cascade down the tree, so any markup that might appear within the container where they are declared will also be considered not for screen reader use.
 
 <a name="editor-config"></a>
 ## Editor Config
