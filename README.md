@@ -294,10 +294,9 @@ Basic accessibility principles should be adhered to when writing HTML - it shoul
     * If an image is used for decorative purposes only, an `alt=""` should be used.
 * Text should NEVER be included as part of an image even when using and `alt` attribute to describe it.
 * Inline `svg` elements should include `title` and, as needed, `desc` elements to provide alternative titles and descriptions.
-    * The `title` element must be the first child of it's parent element.
-    * The `title` provides a human readable name for the SVG content
+    * The `title` element must be the first child of it's parent element. This provides a human readable name for the SVG content.
     * A `desc` element may be added to describe the SVG. Consider adding `desc` elements to describe complex SVGs such as charts or process maps.
-    * If an SVG image is purely decorative, do not include a title or description. Decorative SVG elements should be identified as presentational using the ARIA `role` attribute (`role="presentation"`).
+    * If an SVG image is purely decorative, do not include a title or description. Decorative SVG elements should be identified as presentational by adding the ARIA attributes `aria-hidden="true"` and `role="presentation"`.
 
 **For additional information on writing good `alt` attribute text, check out [What is Alt Text (Alternative Text)?](https://moz.com/learn/seo/alt-text) by Moz.**
 
@@ -317,7 +316,7 @@ _The default Gulp setup has been configured to combine and minify CSS and JavaSc
 
 Representing the Presentation layer of our Front-End Development, it’s important that our CSS/SCSS is well organized and documented. One of CSS’ best features - cascading - can also be its biggest achilles.
 
-**A [.sass-lint.yml](#sass-lint) file is included with this documentation to aid in enforcing some of these standards.** A full breakdown of the current `.sass-lint.yml` is provided later in this document.
+**A [.sass-lint.yml](#scss-linting) file is included with this documentation to aid in enforcing some of these standards.** A full breakdown of the current `.sass-lint.yml` is provided later in this document.
 
 <a name="scss-file-naming-and-organization"></a>
 ### File Naming and Organization
@@ -806,7 +805,7 @@ If an image is purely decorative (it provides no content value other than visual
 
 `<img src="../path/to/image/file.jpg" alt="" aria-hidden="true" role="presentation"`
 
-These attrbiutes should also be applied when defining an inline SVG icon.
+These attributes should also be applied when defining an inline SVG icon that is used for presentational purposes only. [Learn More about SVG Accessibility](#accessibility).
 
 ```
 <svg class="u-icon-search-dims" aria-hidden="true" role="presentation">
