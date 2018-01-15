@@ -62,7 +62,7 @@ There are several guiding principles with Code Standards. These represent the co
 
 When developing, readability is preferred over compression. There is no need for a developer to purposefully (manually or automatically) compress HTML or CSS/SCSS, nor obfuscate JavaScript (more details provided in JavaScript Code Standards).
 
-_[Gulp](https://gulpjs.com/) modules are used to combine and minify CSS and JavaScript assets as needed. **Verbosity is preferred in original source code.**_
+_Automation tools such as [Gulp](https://gulpjs.com/) are used to combine and minify CSS and JavaScript assets as needed. **Verbosity is preferred in original source code.**_
 
 <a name="whitespace"></a>
 ### Whitespace
