@@ -293,11 +293,11 @@ Basic accessibility principles should be adhered to when writing HTML - it shoul
     * Good `alt` attribute text should describe the content of the image as specifically as possible.
     * If an image is used for decorative purposes only, an `alt=""` should be used.
 * Text should NEVER be included as part of an image even when using and `alt` attribute to describe it.
-* Inline `svg`s should include `title` and, as needed, `desc` elements to provide alternative title and descriptions.
+* Inline `svg` elements should include `title` and, as needed, `desc` elements to provide alternative title and descriptions.
     * The `title` element must be the first child of it's parent element.
     * The `title` provides a human readable name for the SVG content
     * A `desc` element may be added to describe the SVG. Consider adding `desc` elements to describe complex SVGs.
-    * If an SVG image is purely decorative, do not include a title or description. The SVG element should additional be identified as presentational using the ARIA role attribute.
+    * If an SVG image is purely decorative, do not include a title or description. Decorative SVG elements should be identified as presentational using the ARIA `role` attribute (`role="presentation"`).
 
 **For additional information on writing good `alt` attribute text, check out [What is Alt Text (Alternative Text)?](https://moz.com/learn/seo/alt-text) by Moz.**
 
