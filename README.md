@@ -495,7 +495,7 @@ In instances where a rule set includes only one declaration, consider removing l
 <a name="property-declaration-order"></a>
 ### Property Declaration Order
 
-Related property declarations should be grouped together following the order:
+Related property declarations should be grouped together following the below general order:
 
 * **Positioning**
   * `z-index`
@@ -515,16 +515,261 @@ Related property declarations should be grouped together following the order:
   * `height`
   * `overflow`
   * `background-*`
+  * `opacity`
 * **Typography**
   * `text-*`
   * `line-height`
   * `font-*`
   * `color`
 * **Miscellaneous**
-  * `opacity`
   * `transform`
   * `transition`
   * `content`
+
+* **Position**
+  * `z-index`
+  * `position`
+  * `top`
+  * `right`
+  * `bottom`
+  * `left`
+* **Display**
+  * `display`
+* **Flex**
+  * `flex`
+  * `flex-basis`
+  * `flex-direction`
+  * `flex-flow`
+  * `flex-grow`
+  * `flex-shrink`
+  * `flex-wrap`
+  * `align-content`
+  * `align-items`
+  * `align-self`
+  * `justify-content`
+* **Grid**
+  * `grid`
+  * `grid-area`
+  * `grid-template`
+  * `grid-template-areas`
+  * `grid-template-rows`
+  * `grid-template-columns`
+  * `grid-column`
+  * `grid-column-start`
+  * `grid-column-end`
+  * `grid-row`
+  * `grid-row-start`
+  * `grid-row-end`
+  * `grid-auto-rows`
+  * `grid-auto-columns`
+  * `grid-auto-flow`
+  * `grid-gap`
+  * `grid-row-gap`
+  * `grid-column-gap`
+* **Order**
+  * `order`
+* **Columns**
+  * `columns`
+  * `column-gap`
+  * `column-fill`
+  * `column-rule`
+  * `column-rule-width`
+  * `column-rule-style`
+  * `column-rule-color`
+  * `column-span`
+  * `column-count`
+  * `column-width`
+* **Float**
+  * `float`
+  * `clear`
+* **Margin**
+  * `margin`
+  * `margin-top`
+  * `margin-right`
+  * `margin-bottom`
+  * `margin-left`
+  * `margin-collapse`
+  * `margin-top-collapse`
+  * `margin-right-collapse`
+  * `margin-bottom-collapse`
+  * `margin-left-collapse`
+* **Outline**
+  * `outline`
+  * `outline-offset`
+  * `outline-width`
+  * `outline-style`
+  * `outline-color`
+* **Box Shadow**
+  * `box-shadow`
+* **Border Radius**
+  * `border-radius`
+  * `border-top-right-radius`
+  * `border-top-left-radius`
+  * `border-bottom-right-radius`
+  * `border-bottom-left-radius`
+* **Border**
+  * `border`
+  * `border-top`
+  * `border-right`
+  * `border-bottom`
+  * `border-left`
+  * `border-width`
+  * `border-top-width`
+  * `border-right-width`
+  * `border-bottom-width`
+  * `border-left-width`
+* **Border Style**
+  * `border-style`
+  * `border-top-style`
+  * `border-right-style`
+  * `border-bottom-style`
+  * `border-left-style`
+* **Border Color**
+  * `border-color`
+  * `border-top-color`
+  * `border-right-color`
+  * `border-bottom-color`
+  * `border-left-color`
+* **Border Image**
+  * `border-image`
+  * `border-image-source`
+  * `border-image-width`
+  * `border-image-outset`
+  * `border-image-repeat`
+  * `border-image-slice`
+* **Padding**
+  * `padding`
+  * `padding-top`
+  * `padding-right`
+  * `padding-bottom`
+  * `padding-left`
+* **Width**
+  * `width`
+  * `min-width`
+  * `max-width`
+* **Height**
+  * `height`
+  * `min-height`
+  * `max-height`
+* **Overflow**
+  * `overflow`
+  * `overflow-x`
+  * `overflow-y`
+  * `resize`
+* **Background**
+  * `background`
+  * `background-attachment`
+  * `background-clip`
+  * `background-color`
+  * `background-image`
+  * `background-repeat`
+  * `background-position`
+  * `background-size`
+* **Cursor and Events**
+  * `cursor`
+  * `pointer-events`
+* **svg**
+  * `fill`
+  * `stroke`
+* **List Style**
+  * `list-style`
+  * `list-style-type`
+  * `list-style-position`
+  * `list-style-image`
+  * `caption-side`
+* **Counters**
+  * `counter-reset`
+  * `counter-increment`
+* **Tables**
+  * `table-layout`
+  * `border-collapse`
+  * `border-spacing`
+  * `empty-cells`
+* **Visibility**
+  * `opacity`
+  * `visibility`
+* **Vertical Alignment**
+  * `vertical-align`
+* **Text Alignment and Decoration**
+  * `direction`
+  * `tab-size`
+  * `text-align`
+  * `text-align-last`
+  * `text-decoration`
+  * `text-decoration-color`
+  * `text-decoration-line`
+  * `text-decoration-style`
+  * `text-justify`
+  * `text-indent`
+  * `text-transform`
+  * `text-rendering`
+  * `text-shadow`
+  * `text-overflow`
+* **Text Spacing**
+  * `line-height`
+  * `letter-spacing`
+  * `word-spacing`
+  * `white-space`
+  * `word-break`
+  * `word-wrap`
+* **Font**
+  * `font`
+  * `font-family`
+  * `font-size`
+  * `font-size-adjust`
+  * `font-stretch`
+  * `font-weight`
+  * `font-smoothing`
+  * `osx-font-smoothing`
+  * `font-variant`
+  * `font-style`
+* **Color**
+  * `color`
+* **Animation**
+  * `animation`
+  * `animation-name`
+  * `animation-duration`
+  * `animation-timing-function`
+  * `animation-delay`
+  * `animation-iteration-count`
+  * `animation-direction`
+  * `animation-fill-mode`
+  * `animation-play-state`
+* **Transform**
+  * `backface-visibility`
+  * `perspective`
+  * `perspective-origin`
+  * `transform`
+  * `transform-origin`
+  * `transform-style`
+* **Transition**
+  * `transition`
+  * `transition-delay`
+  * `transition-duration`
+  * `transition-property`
+  * `transition-timing-function`
+* **Content**
+  * `content`
+  * `quotes`
+* **Breaks**
+  * `page-break-before`
+  * `page-break-after`
+  * `page-break-inside`
+* **Misc**
+  * `hyphens`
+  * `src`
+  * `clip`
+  * `filter`
+  * `size`
+  * `zoom`
+  * `appearance`
+  * `user-select`
+  * `interpolation-mode`
+  * `marks`
+  * `page`
+  * `set-link-source`
+  * `unicode-bidi`
+  * `speak`
 
 Positioning comes first because it can remove an element from the normal flow of the document and override box model related styles. The box model comes next as it dictates a component's dimensions and placement.
 
@@ -551,6 +796,7 @@ Everything else takes place inside the component or without impacting the previo
     height: 100px;
     overflow: hidden;
     background-color: #f5f5f5;
+    opacity: 1;
 
     /* typography */
     text-align: center;
@@ -560,7 +806,6 @@ Everything else takes place inside the component or without impacting the previo
     color: #333;
 
     /* misc */
-    opacity: 1;
     transform: translateX(10px);
     transition: color #f00;
     content: '';
