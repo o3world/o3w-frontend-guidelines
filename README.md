@@ -497,35 +497,8 @@ In instances where a rule set includes only one declaration, consider removing l
 
 Related property declarations should be grouped together following the below general order:
 
-* **Positioning**
-  * `z-index`
-  * `position`
-  * `top`
-  * `right`
-  * `bottom`
-  * `left`
-* **Display and Box Model**
-  * `display`
-  * `float`
-  * `margin`
-  * `border-radius`
-  * `border`
-  * `padding`
-  * `width`
-  * `height`
-  * `overflow`
-  * `background-*`
-  * `opacity`
-* **Typography**
-  * `text-*`
-  * `line-height`
-  * `font-*`
-  * `color`
-* **Miscellaneous**
-  * `transform`
-  * `transition`
-  * `content`
-
+* **Box Sizing**
+  * `box-sizing`
 * **Position**
   * `z-index`
   * `position`
@@ -789,6 +762,8 @@ Everything else takes place inside the component or without impacting the previo
     display: block;
     float: right;
     margin: 0;
+    outline: 1px solid #ff0000;
+    box-shadow: 0px 5px 5px #000000;
     border-radius: 50%;
     border: 1px solid #999;
     padding: 0;
@@ -797,9 +772,12 @@ Everything else takes place inside the component or without impacting the previo
     overflow: hidden;
     background-color: #f5f5f5;
     opacity: 1;
+    visibility: visible;
+    vertical-align: middle;
 
     /* typography */
     text-align: center;
+    text-decoration: underline;
     line-height: 1.5;
     font: normal 13px 'Helvetica Neue', sans-serif;
     font-size: 14px;
@@ -809,6 +787,7 @@ Everything else takes place inside the component or without impacting the previo
     transform: translateX(10px);
     transition: color #f00;
     content: '';
+    appearance: none;
 }
 ```
 
