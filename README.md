@@ -762,8 +762,8 @@ Everything else takes place inside the component or without impacting the previo
     display: block;
     float: right;
     margin: 0;
-    outline: 1px solid #ff0000;
-    box-shadow: 0px 5px 5px #000000;
+    outline: 1px solid #f00;
+    box-shadow: 0 5px 5px #000;
     border-radius: 50%;
     border: 1px solid #999;
     padding: 0;
