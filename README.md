@@ -45,6 +45,7 @@ The Table of Contents below will help jump you to the pertinent section of this 
 * [Images](#images)
 * [Editor Config](#editor-config)
 * [Sources](#sources)
+* [Tools](#tools)
 
 <a name="principles-of-standardized-code"></a>
 ## Principles of Standardized Code
@@ -400,7 +401,9 @@ The overall structure of a SCSS rule should follow the below order:
         text-align: center;
     }
 
-    &:hover { background: #0c0; }
+    &:hover {
+        background: #0c0;
+    }
 
     &::before {
         display: block;
@@ -464,7 +467,9 @@ CSS/SCSS formatting decisions documented below are in place to ensure that code 
     }
 }
 
-.selector-a { padding: (10px * 2) 5px; }
+.selector-a {
+    padding: (10px * 2) 5px;
+}
 
 .selector-b,
 .selector-c { padding: 10px; }
@@ -484,7 +489,7 @@ Long, comma-separated property values - such as collections of gradients or shad
 }
 ```
 
-In instances where a rule set includes only one declaration, consider removing line breaks for readability and faster editing. Any rule set with multiple declarations should be split to separate lines.
+In instances where a rule set includes only one declaration it may optionally be placed on a single line. When grouping single line selectors consider removing line breaks for readability and faster editing. Any rule set with multiple declarations should be split to separate lines.
 
 ```css
 .span1 { width: 60px; }
@@ -1108,3 +1113,22 @@ These Code Standards are the culmination of research into best practices as well
 * [Code Guide](http://codeguide.co/)
 * [SASS Style Guide](https://css-tricks.com/sass-style-guide/)
 * [SASS Guidelines](https://sass-guidelin.es/)
+
+<a name="tools"></a>
+## Tools
+
+### [CSScomb](https://github.com/csscomb/csscomb.js)
+
+Will fix code to adhere to a predefined configuration file. The .csscomb file in this repository is set to fix scss to adhere to sass-lint settings.
+
+![image](https://user-images.githubusercontent.com/3884266/59288379-a88bae00-8c41-11e9-9732-5e5a20e9ea05.png)
+
+#### Usage
+1. Copy .csscomb file from this repo in the root of your project.
+2. Install the CSScomb plugin to your IDE (see links below)
+3. Follow instructions from the plugin to configure the plugin.
+
+#### IDE Plugins
+- [Atom CSScomb plugin](https://atom.io/packages/atom-css-comb)
+- [VS Code CSScomb plugin](https://github.com/mrmlnc/vscode-csscomb)
+- [Github Repo](https://github.com/csscomb/csscomb.js)
