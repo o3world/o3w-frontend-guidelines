@@ -210,6 +210,10 @@ Per the HTML5 spec, typically there is no need to specify a type when including 
     /* ... */
 </style>
 
+<!-- Website content -->
+<main>
+</main>
+
 <!-- javascript -->
 <script src="my-javascript.js"></script>
 ```
@@ -287,7 +291,7 @@ Insert an ending comment after the closing tag of a long HTML section. This help
 
 Basic accessibility principles should be adhered to when writing HTML - it shouldn't be an afterthought. You don't have to be a [WCAG](https://www.w3.org/WAI/intro/wcag) expert and different clients have different requirements for level of support, but **basic accessibility support can have a huge impact.**
 
-* Use `H1` - `H6` to properly order and identify headings.
+* Use `h1` - `h6` to properly order and identify headings.
 * In tables, use the `scope` attribute to associate header cells and data cells in data tables and use the `summary` attribute of the table element to give an overview of data tables.
 * For forms, always provide a submit button, use `label` elements to associate text labels with form controls, and visually indicate required form controls.
 * With image elements, **always** use `alt` attributes. Use an empty `alt` attribute on image elements that Assistive Technology should ignore.
@@ -306,7 +310,15 @@ _Tools such as [PowerMapper’s SortSite](https://www.powermapper.com/products/s
 <a name="performance"></a>
 ### Performance
 
-Unless there's a valid reason for loading your scripts before your content (e.g. [Modernizr](https://modernizr.com/) or certain tracking scripts), don't block the rendering of your page by placing them in the `<head>`. Move as many as possible to the bottom of the markup right above the `</body>` or `async`/`defer` the load.
+Unless there's a valid reason for loading your scripts before your content (e.g. [Modernizr](https://modernizr.com/) or certain tracking scripts), don't block the rendering of your page by placing them in the `<head>`. Move as many as possible to the bottom of the markup right above the `</body>` or `async`/`defer` the load by adding the async or defer attribute to the script loading tag.
+
+```html
+<!-- Asynchronous loading -->
+<script src="./main.js" async>
+    
+<!-- Defer the script -->
+<script src="./main.js" defer>
+```
 
 Individual SVG assets should be optimized using a tool such as [SVGOMG](https://jakearchibald.github.io/svgomg/). Image assets should be processed using a tool like [ImageOptim](https://imageoptim.com/mac). Both of these safely remove - without a noticeable change to the asset - redundant and useless information such as editor metadata, comments, hidden elements, default or non-optimal values which can have a significant impact on file size.
 
