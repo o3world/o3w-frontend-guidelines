@@ -423,7 +423,7 @@ The overall structure of a SCSS rule should follow the below order:
 }
 ```
 
-As a rule of thumb, avoid unnecessary nesting in SCSS. **At most, aim for three levels.** If you cannot help it, step back and rethink your overall strategy (either the specificity needed, or the layout of the nesting). This prevents overly-specific CSS selectors.
+As a rule of thumb, avoid unnecessary nesting in SCSS. **At most, aim for three levels.** If you cannot help it, step back and rethink your overall strategy (either the specificity needed, or the layout of the nesting). This prevents overly-specific CSS selectors. These also greatly increase the final file size.
 
 <a name="rule-selector-property-formatting"></a>
 ### Rule/Selector/Property Formatting
@@ -849,6 +849,9 @@ Pre-formatted comment chunks can be setup within most IDEs and tied to a keyboar
 * Avoid excessive and arbitrary shorthand notation. `.btn` is useful for button, but `.s` doesn't mean anything.
 * Use meaningful names; use structural or purposeful names over presentational.
 * It's also useful to apply many of these same rules when creating SCSS variable names.
+* A valid name should start with a letter, an underscore, or a hyphen (-) which is followed by any numbers, hyphens, underscores, letters.
+* A name should be at least two characters long.
+* A name can not start with a digit, two hyphens or a hyphen followed by a number.
 
 <a name="block-element-modifier-bem"></a>
 ### Block Element Modifier (BEM)
@@ -903,6 +906,8 @@ data-nav="toggle"
 data-subnav="container"
 data-subnav="toggle"
 ```
+
+If for some reason you have to use id's or classes you should always prefix them with somehting like `js-`, so you can avoid conflicts as much as possible. 
 
 _Use your best judgement or ask a fellow developer if your namespacing makes sense. TL;DR Naming is hard._
 
