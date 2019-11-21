@@ -925,6 +925,8 @@ The sass-lint linter is no longer maintained, so O3 is dropping active support f
 
 A custom `.stylelintrc.json` file has been setup and included with this documentation to aid in the implementation of these standards. It will provide Warnings and Errors within the console for you to review and correct. This stylelint config extends the stylelint recommended config, and uses an additional [stylelint-order](https://github.com/hudochenkov/stylelint-order) plugin for property sorting.
 
+To see a list of the rules, refer to the [stylelint-config-standard](https://github.com/stylelint/stylelint-config-standard/blob/master/index.js) as well as the rules in the `.stylelintrc.json` file in this repository
+
 [Stylelint User Guide](https://stylelint.io/user-guide)
 
 ##### Setup
@@ -937,11 +939,16 @@ A custom `.stylelintrc.json` file has been setup and included with this document
 - [stylelint PostCSS plugin](https://stylelint.io/user-guide/postcss-plugin)
 - [gulp-stylelint](https://github.com/olegskl/gulp-stylelint)
 
-To see a list of the rules, refer to the [stylelint-config-standard](https://github.com/stylelint/stylelint-config-standard/blob/master/index.js) as well as the rules in the `.stylelintrc.json` file in this repository
+##### Auto fix errors
+Stylelint CLI can autofix as many errors as possible. To use the autofixer append `--fix` to a stylelint command.
+```
+stylelint "foo/*.scss" --fix
+```
 
 **All items (Warnings and Errors) should be addressed to be inline with Front-End Standards defined in this document.**
 
 A full breakdown of all available Rules in the SASS Linter are available with the [Documentation](https://stylelint.io/user-guide/rules).
+
 
 _NOTE: There are instances where exceptions to these linting rules are necessary. In those instances, individual file, rule, and declaration exceptions can be added. A breakdown of these exception comments is below:_
 
