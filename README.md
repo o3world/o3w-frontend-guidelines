@@ -316,8 +316,7 @@ _The default Gulp setup has been configured to combine and minify CSS and JavaSc
 ## CSS/SCSS
 
 Representing the Presentation layer of our Front-End Development, it’s important that our CSS/SCSS is well organized and documented. One of CSS’ best features - cascading - can also be its biggest achilles.
-
-**A [.sass-lint.yml](#scss-linting) file is included with this documentation to aid in enforcing some of these standards.** A full breakdown of the current `.sass-lint.yml` is provided later in this document.
+**A [.stylelintrc.json](#scss-linting) file is included with this documentation to aid in enforcing some of these standards.** A full breakdown of the current `.stylelintrc.json` is provided later in this document.
 
 <a name="scss-file-naming-and-organization"></a>
 ### File Naming and Organization
@@ -796,7 +795,7 @@ Everything else takes place inside the component or without impacting the previo
 }
 ```
 
-_NOTE: A comprehensive property order breakdown can be viewed in the custom `.sass-lint.yml` file. Properties that are delared out of the order defined in this file will be flagged with a warning during linting._
+_NOTE: A comprehensive property order breakdown can be viewed in the custom `.stylelintrc.json` file. Properties that are delared out of the order defined in this file will be flagged with a warning during linting._
 
 <a name="pixels-ems-rems-for-typography"></a>
 ### Pixels vs. EMs vs. REMs for Typography
@@ -919,60 +918,49 @@ Use the `.is-*` prefix for state classes that are shared between CSS/SCSS and Ja
 <a name="scss-linting"></a>
 ### Linting
 
-A custom `.sass-lint.yml` file has been setup and included with this documentation to aid in the implementation of these standards. This Linting process runs as a Gulp task - courtesy of the [sass-lint](https://github.com/sasstools/sass-lint) package - when your SCSS is processed. It will provide Warnings and Errors within the console for you to review and correct.
+#### Sass-lint (deprecated)
+The sass-lint linter is no longer maintained, so O3 is dropping active support for sass-lint. Previous sass-lint docs [can be viewed here](https://github.com/o3world/o3w-frontend-guidelines/tree/4911816198fe5a3aac95cd31199f00927b80e389#linting)
 
-Most items will be flagged as a Warning, but a few items that will generate an Error include:
+#### Stylelint
 
-* Extends before mixins
-* Extends before declarations
-* Mixins before declarations
-* One declaration per line
-* Empty line between blocks
-* Single line per selector
-* No invalid hexs
-* No trailing whitespace
-* No URL domains
-* No URL protocols
-* Declarations before nesting
-* Quote attributes
-* Border zero
-* Hex length
-* Hex notation
-* Leading zero
-* Quotes
-* Zero units
-* Space before colon
-* Space after colon
-* Space before brace
-* Space before bang (!)
-* Space after bang (!)
-* Space between parens
-* Space around operator
-* Trailing semicolon
-* Final newline
+A custom `.stylelintrc.json` file has been setup and included with this documentation to aid in the implementation of these standards. It will provide Warnings and Errors within the console for you to review and correct. This stylelint config extends the stylelint recommended config, and uses an additional [stylelint-order](https://github.com/hudochenkov/stylelint-order) plugin for property sorting.
+
+[Stylelint User Guide](https://stylelint.io/user-guide)
+
+##### Setup
+1. `npm install stylelint stylelint-config-standard stylelint-order --save-dev`
+1. Copy `.stylelintrc.json` from this repo and into project root.
+
+##### Usage
+- [Stylelint CLI Guide](https://stylelint.io/user-guide/cli)
+- [stylelint-webpack-plugin](https://github.com/webpack-contrib/stylelint-webpack-plugin)
+- [stylelint PostCSS plugin](https://stylelint.io/user-guide/postcss-plugin)
+- [gulp-stylelint](https://github.com/olegskl/gulp-stylelint)
+
+To see a list of the rules, refer to the [stylelint-config-standard](https://github.com/stylelint/stylelint-config-standard/blob/master/index.js) as well as the rules in the `.stylelintrc.json` file in this repository
 
 **All items (Warnings and Errors) should be addressed to be inline with Front-End Standards defined in this document.**
 
-A full breakdown of all available Rules in the SASS Linter are available with the [Documentation](https://github.com/sasstools/sass-lint/tree/develop/docs/rules).
+A full breakdown of all available Rules in the SASS Linter are available with the [Documentation](https://stylelint.io/user-guide/rules).
 
-_NOTE: There are instances where exceptions to these Linting rules are necessary. In those instances, individual file, rule, and declaration exceptions can be added. A breakdown of these exception comments is below:_
+_NOTE: There are instances where exceptions to these linting rules are necessary. In those instances, individual file, rule, and declaration exceptions can be added. A breakdown of these exception comments is below:_
 
 **Disable a rule for the entire file**
 
 ```css
-// sass-lint:disable border-zero
+/* stylelint-disable declaration-no-important */
 p {
-    border: 0; // No lint reported
+    margin: 0 !important; // No lint reported
 }
 ```
 
 **Disable more than 1 rule**
 
 ```css
-// sass-lint:disable border-zero, quotes
+/* stylelint-disable declaration-no-important, string-quotes */
 p {
-    border: none; // No lint reported
-    content: 'hello'; // No lint reported
+    margin: 0 !important; // No lint reported
+    content: "hello"; // No lint reported
 }
 ```
 
@@ -980,31 +968,18 @@ p {
 
 ```css
 p {
-    border: 0; // sass-lint:disable-line border-zero
-}
-```
-
-**Disable all lints within a block (and all contained blocks)**
-
-```css
-p {
-    // sass-lint:disable-block border-zero
-    border: 0; // No result reported
-}
-
-a {
-    border: 0; // Failing result reported
+    margin: 0 !important; /* stylelint-disable-line declaration-no-important */
 }
 ```
 
 **Disable and enable again**
 
 ```css
-// sass-lint:disable border-zero
-p {
-    border: 0; // No result reported
+/* stylelint-disable selector-no-id, declaration-no-important  */
+#id {
+  color: pink !important;
 }
-// sass-lint:enable border-zero
+/* stylelint-enable */
 
 a {
     border: 0; // Failing result reported
@@ -1014,14 +989,14 @@ a {
 **Disable/enable all linters**
 
 ```css
-// sass-lint:disable-all
+/* stylelint-disable */
 p {
-    border: 0; // No result reported
+    margin: 0 !important; // No result reported
 }
-// sass-lint:enable-all
+/* stylelint-enable */
 
 a {
-    border: 0; // Failing result reported
+    margin: 0 !important; // Failing result reported
 }
 ```
 
@@ -1119,7 +1094,7 @@ These Code Standards are the culmination of research into best practices as well
 
 ### [CSScomb](https://github.com/csscomb/csscomb.js)
 
-Will fix code to adhere to a predefined configuration file. The .csscomb file in this repository is set to fix scss to adhere to sass-lint settings.
+Will fix code to adhere to a predefined configuration file. The .csscomb file in this repository is set to fix scss to adhere to stylelint settings.
 
 ![image](https://user-images.githubusercontent.com/3884266/59288379-a88bae00-8c41-11e9-9732-5e5a20e9ea05.png)
 
