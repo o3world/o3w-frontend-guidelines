@@ -938,11 +938,17 @@ To see a list of the rules, refer to the [stylelint-config-standard](https://git
 - [stylelint-webpack-plugin](https://github.com/webpack-contrib/stylelint-webpack-plugin)
 - [stylelint PostCSS plugin](https://stylelint.io/user-guide/postcss-plugin)
 - [gulp-stylelint](https://github.com/olegskl/gulp-stylelint)
+- [Stylelint plugins for your code editor](https://stylelint.io/user-guide/complementary-tools#editor-plugins)
 
 ##### Auto fix errors
 Stylelint CLI can autofix as many errors as possible. To use the autofixer append `--fix` to a stylelint command.
 ```
 stylelint "foo/*.scss" --fix
+```
+
+You may have to install stylelint globally:
+```
+npm install stylelint -g
 ```
 
 **All items (Warnings and Errors) should be addressed to be inline with Front-End Standards defined in this document.**
